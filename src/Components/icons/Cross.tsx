@@ -1,4 +1,6 @@
-export const Cross = props => {
+import { Icon } from '../../Interfaces/Icon';
+
+export const Cross = (props: Icon) => {
   return (
     <svg
       {...props}
