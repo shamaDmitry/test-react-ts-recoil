@@ -3,7 +3,8 @@ import { TodoList } from './Components/Todo/TodoList';
 import { TodoForm } from './Components/Todo/TodoForm';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { TodoListFilterAtom, TodoListFiltered } from './store/TodoStore';
-import TodoFilterEnum from './Enums/TodoFilterEnum';
+import { Select } from './Components/atoms/Select';
+import { FilterSelectData } from './ComponentsData/FilterSelect';
 
 function App() {
   const [filter, setFilter] = useRecoilState(TodoListFilterAtom);
@@ -17,16 +18,11 @@ function App() {
           <div className="flex flex-col justify-center gap-4 mb-4 lg:flex-row ">
             <TodoForm />
 
-            <select
-              name="todo-filter"
-              className="px-4 py-2 capitalize border"
+            <Select
               value={filter}
               onChange={e => setFilter(e.target.value)}
-            >
-              <option value={TodoFilterEnum.All}>All</option>
-              <option value={TodoFilterEnum.Completed}>Completed</option>
-              <option value={TodoFilterEnum.NotCompleted}>Not Completed</option>
-            </select>
+              options={FilterSelectData}
+            />
           </div>
 
           <TodoList data={list} />
